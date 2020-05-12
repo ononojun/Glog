@@ -1,0 +1,23 @@
+<div class="contents row" >
+  <% @games. each do |game| %>
+     <div class="content_post" style="background-image: url(<%= game.image %>);">
+       <% if user_signed_in? && current_user.id == game.user_id %>
+        <div class="more">
+          <span><%= image_tag 'arrow_top.png' %></span>
+          <ul class="more_list">
+            <li>
+              <%= link_to '編集', "/games/#{game.id}/edit", method: :get %>
+            </li>
+            <li>
+              <%= link_to '削除', "/games/#{game.id}", method: :delete %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+       <%= simple_format(game.text) %>
+       <span class="title"><%= game.title %></span>
+     </div>
+  <% end %>
+  
+  <%= paginate(@games) %>
+</div>

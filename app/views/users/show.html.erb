@@ -1,0 +1,10 @@
+<div class="contents row">
+  <p><%= @nickname %>さんの投稿一覧</p>
+  <% @games.each do |game| %>
+    <div class="content_post" style="background-image: url(<%= game.image %>);">
+      <%= simple_format(game.text) %>
+      <span class="name"><%= game.title %></span>
+    </div>
+  <% end %>
+  <%= paginate(@games) %>
+</div>
